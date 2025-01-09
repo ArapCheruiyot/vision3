@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RBAC File Manager</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://apis.google.com/js/api.js" onload="gapiLoaded()" async></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <h1>RBAC File Manager</h1>
+    
+    <!-- Role Selection -->
+    <div id="roleSelection">
+        <label for="role">Select Role:</label>
+        <select id="role" onchange="handleRoleSelection()">
+            <option value="manager">Manager</option>
+            <option value="agent">Agent</option>
+        </select>
+    </div>
+
+    <!-- Shared Section -->
+    <div>
+        <button id="authorize_button" style="display:none;" onclick="handleAuthClick()">Authorize</button>
+        <button id="signout_button" style="display:none;" onclick="handleSignoutClick()">Sign Out</button>
+    </div>
+
+    <!-- Manager Section -->
+    <div id="managerSection" style="display:none;">
+        <h2>Manager Panel</h2>
+
+        <!-- Upload Files -->
+        <h3>Upload Files</h3>
+        <input type="file" id="file_input" multiple onchange="handleFileSelection()">
+        <ul id="file_list"></ul>
+        <button onclick="uploadFiles()">Upload Files</button>
+    </div>
+
+    <!-- Shared Download Section -->
+    <div id="downloadSection" style="display:none;">
+        <h3>Download Files</h3>
+        <button onclick="listFiles()">List Files</button>
+        <ul id="download_list"></ul>
+    </div>
+</body>
+</html>
